@@ -1,3 +1,4 @@
+import 'package:compfest_aic_2019/ReusableMaterial.dart';
 import 'package:flutter/material.dart';
 import 'package:compfest_aic_2019/StringContent.dart';
 
@@ -18,7 +19,21 @@ class Service {
           longText(),
         ],
       ),
-      Text("You too")
+      ListView(
+        children: <Widget>[
+          hospitalListView(),
+          Divider(height: 1,),
+          hospitalListView(),
+          Divider(height: 1,),          
+          hospitalListView(),
+          Divider(height: 1,),
+          hospitalListView(),
+          Divider(height: 1,),          
+          hospitalListView(),
+          // hospitalListView(),
+          // hospitalListView(),
+        ],
+      )
     ]
   );
 
@@ -46,31 +61,75 @@ class Service {
   );
 
   Widget longText() => Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: <Widget>[
-    Padding(
-      padding: EdgeInsets.all(10),
-      child: Text(
-        'Quick Details',
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: <Widget>[
+      Padding(
+        padding: EdgeInsets.all(10),
+        child: Text(
+          'Quick Details',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
-    ),
-    Padding(
-      padding: EdgeInsets.all(10),
-      child: Text(
-        StringContent().hairtransplantqd,
-        textAlign: TextAlign.justify,
-        style: TextStyle(
-          fontSize: 14,
+      Padding(
+        padding: EdgeInsets.all(10),
+        child: Text(
+          StringContent().hairtransplantqd,
+          textAlign: TextAlign.justify,
+          style: TextStyle(
+            fontSize: 14,
+          ),
         ),
       ),
-    ),
-  ],
-);
+    ],
+  );
 
+  Widget hospitalListView() => Container(
+    height: 100,
+    child: Row(
+      children: <Widget>[
+        Container(
+          width: 10,
+        ),
+        SizedBox(
+          height: 70,
+          child: Image.asset(
+            "assets/logo.png",
+            fit: BoxFit.contain,
+          ),
+        ),
+        Container(
+          width: 20,
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "RSPP",
+              style: TextStyle(fontSize: 20)
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children:[
+                Icon(Icons.star, color: ReusableMaterial().appBarColorleft,),
+                Icon(Icons.star, color: ReusableMaterial().appBarColorleft,),
+                Icon(Icons.star, color: ReusableMaterial().appBarColorleft,),
+                Icon(Icons.star, color: ReusableMaterial().appBarColorleft,),
+                Icon(Icons.star, color: ReusableMaterial().appBarColorleft,),
+              ],
+            ),
+            Text(
+              "Rp 2.000.000",
+            )
+          ],
+        )
+      ],
+    ),
+  );
 }
 
 const List<Service> services = const <Service>[

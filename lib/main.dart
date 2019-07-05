@@ -259,52 +259,12 @@ class ServiceDetailsRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(
       return DefaultTabController(
-      // home: DefaultTabController(
         length: 2,
         child: Scaffold(
           appBar: ReusableMaterial().getAppBarWithTabBar("Hair Transplant"),
           body: Service().detailsTabBarView(),
         )
       );
-    // );
-    // return ReusableMaterial().getAppBarWithTabBar("Hair Transplant");
-    // return Scaffold(
-      // appBar: ReusableMaterial().getAppBar("Hair Transplant"),
-      // appBar: ReusableMaterial().getAppBarWithTabBar("Hair Transplant"),
-      // body: Service().detailsTabBarView(),
-      // body: ListView(
-      //   children: <Widget>[
-      //     Container(
-      //       height: 20.0,
-      //     ),
-          // Service().scrollableGallery(),
-          // Container(
-          //   height: 155.0,
-          //   child: Column(
-          //     children: <Widget>[
-          //       Text(
-          //         "Gallery",
-          //         style: TextStyle(
-          //           fontSize: 30,
-          //           fontWeight: FontWeight.bold,
-          //         ),
-          //       ),
-          //       //Buat Scrollable Image View (Slider)
-          //       SizedBox(
-          //         height: 100.0,
-          //         child: Image.asset(
-          //           "assets/medix.png",
-          //           fit: BoxFit.contain,
-          //         ),
-          //       ),
-          //     ],
-          //   )
-          // ),
-          // Service().longText(),
-        // ],
-      // ),
-    // );
   }
 }
