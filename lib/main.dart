@@ -1,6 +1,6 @@
 import 'package:compfest_aic_2019/CategoriesGrid.dart';
 import 'package:compfest_aic_2019/ReusableMaterial.dart';
-import 'package:compfest_aic_2019/ServiceDetails.dart';
+import 'package:compfest_aic_2019/Service.dart';
 import 'package:compfest_aic_2019/StringContent.dart';
 import 'package:flutter/material.dart';
 
@@ -253,56 +253,58 @@ class CategoriesRouteState extends State<CategoriesRoute> {
       ),
     );
   }
-
-  Widget _buildCard() => SizedBox(
-    height: 210,
-    child: Card(
-      child:ListTile(
-        leading: FlutterLogo(size: 30.0),
-        title: Text('Hair Transplant'),
-        subtitle: Text('Hair Transplant is abluablu, research on progress'),
-      ),
-    ),
-  );
 }
 
 class ServiceDetailsRoute extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ReusableMaterial().getAppBar("Hair Transplant"),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            height: 40.0,
-          ),
-          Container(
-            height: 155.0,
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "Gallery",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                //Buat Scrollable Image View (Slider)
-                SizedBox(
-                  height: 100.0,
-                  child: Image.asset(
-                    "assets/medix.png",
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ],
-            )
-          ),
-          const Text('Quick Details'),
-          ServiceDetails().longText(),
-        ],
-      ),
-    );
+    // return MaterialApp(
+      return DefaultTabController(
+      // home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: ReusableMaterial().getAppBarWithTabBar("Hair Transplant"),
+          body: Service().detailsTabBarView(),
+        )
+      );
+    // );
+    // return ReusableMaterial().getAppBarWithTabBar("Hair Transplant");
+    // return Scaffold(
+      // appBar: ReusableMaterial().getAppBar("Hair Transplant"),
+      // appBar: ReusableMaterial().getAppBarWithTabBar("Hair Transplant"),
+      // body: Service().detailsTabBarView(),
+      // body: ListView(
+      //   children: <Widget>[
+      //     Container(
+      //       height: 20.0,
+      //     ),
+          // Service().scrollableGallery(),
+          // Container(
+          //   height: 155.0,
+          //   child: Column(
+          //     children: <Widget>[
+          //       Text(
+          //         "Gallery",
+          //         style: TextStyle(
+          //           fontSize: 30,
+          //           fontWeight: FontWeight.bold,
+          //         ),
+          //       ),
+          //       //Buat Scrollable Image View (Slider)
+          //       SizedBox(
+          //         height: 100.0,
+          //         child: Image.asset(
+          //           "assets/medix.png",
+          //           fit: BoxFit.contain,
+          //         ),
+          //       ),
+          //     ],
+          //   )
+          // ),
+          // Service().longText(),
+        // ],
+      // ),
+    // );
   }
 }
