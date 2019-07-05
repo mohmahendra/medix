@@ -30,8 +30,6 @@ class Service {
           hospitalListView(),
           Divider(height: 1,),          
           hospitalListView(),
-          // hospitalListView(),
-          // hospitalListView(),
         ],
       )
     ]
@@ -105,7 +103,6 @@ class Service {
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          // mainAxisAlignment: MainAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(

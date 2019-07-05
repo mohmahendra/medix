@@ -1,23 +1,38 @@
 import 'package:flutter/material.dart';
 
 class Choice {
-  const Choice({this.title, this.icon});
+  const Choice({this.title, this.icon, this.listChild});
 
   final String title;
   final IconData icon;
+  final List listChild;
 
   choiceTitleGetter(){
     return this.title;
   }
+
+  choiceListLength(){
+    return this.listChild.length;
+  }
+
+  choiceListGetter(int x){
+    return this.listChild[x];
+  }
 }
 
 const List<Choice> choices = const <Choice>[
-  const Choice(title: 'General Medical', icon: Icons.directions_boat),
-  const Choice(title: 'Neurology', icon: Icons.directions_bike),
-  const Choice(title: 'Orthopedics', icon: Icons.directions_transit),
-  const Choice(title: 'Plastic Surgery', icon: Icons.directions_bus),
-  const Choice(title: 'Cardiovascular', icon: Icons.directions_railway),
-  const Choice(title: 'Cardiovascular', icon: Icons.directions_car),
+  const Choice(title: 'General Medical', icon: Icons.directions_boat,
+  listChild: ['General Checkup', 'X-Ray', 'Blood Test']),
+  const Choice(title: 'Neurology', icon: Icons.directions_bike,
+  listChild: ['Epilepsy Surgery', 'Parkinson Surgery', 'Brain Therapy']),
+  const Choice(title: 'Orthopedics', icon: Icons.directions_transit,
+  listChild: ['Hand Join Replacement', 'Hip Replacement', 'Spinal Surgery']),
+  const Choice(title: 'Plastic Surgery', icon: Icons.directions_bus,
+  listChild: ['Hair Transplant', 'Lip Reduction', 'Breast Implant']),
+  const Choice(title: 'Cardiovascular', icon: Icons.directions_railway,
+  listChild: ['Aortic Valve Replacement', 'ASD Surgery', 'Stress Echocardiogram']),
+  const Choice(title: 'Cardiovascular', icon: Icons.directions_car,
+  listChild: ['Aortic Valve Replacement', 'ASD Surgery', 'Stress Echocardiogram']),
   ];
 
 class CategoriesGrid extends StatelessWidget {
@@ -35,7 +50,7 @@ class CategoriesGrid extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Icon(choice.icon, size: 40.0, color: textStyle.color),
-            Text(choice.title, textAlign: TextAlign.center ,style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 1.5)), //textAlign: TextAlign.center,),),
+            Text(choice.title, textAlign: TextAlign.center ,style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 1.5)),
           ],
         )
       ),

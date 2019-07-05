@@ -1,7 +1,6 @@
 import 'package:compfest_aic_2019/CategoriesGrid.dart';
 import 'package:compfest_aic_2019/ReusableMaterial.dart';
 import 'package:compfest_aic_2019/Service.dart';
-import 'package:compfest_aic_2019/StringContent.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -171,7 +170,7 @@ class ListCategoriesRoute extends StatelessWidget {
                       child: CategoriesGrid(choice: choices[index],)
                       ),
                     onTap: () {
-                      goToCategoriesPage(context, index);
+                      goToCategoriesRoute(context, index);
                     },
                   );
                 })
@@ -182,8 +181,7 @@ class ListCategoriesRoute extends StatelessWidget {
       )
     );
   }
-  goToCategoriesPage(BuildContext context, int index) {
-    // var details = CategoriesGrid(choice: choices[index],);
+  goToCategoriesRoute(BuildContext context, int index) {
     var details = choices[index];
     Navigator.push(
       context, 
@@ -199,6 +197,7 @@ class ListCategoriesRoute extends StatelessWidget {
 class CategoriesRoute extends StatefulWidget {
 
   final Choice categoriesChoice;
+
   CategoriesRoute({@required this.categoriesChoice});
 
   @override
@@ -213,58 +212,94 @@ class CategoriesRouteState extends State<CategoriesRoute> {
     return Scaffold(
       appBar: ReusableMaterial().getAppBar(widget.categoriesChoice.choiceTitleGetter()),
       body: ListView(
-        children: <Widget>[
-          Card(
+        children: List.generate(widget.categoriesChoice.choiceListLength(), (indexes) {
+          return Card(
             elevation: 5,
             child: ListTile(
               leading: FlutterLogo(size: 45.0),
-              title: Text('Hair Transplant'),
+              title: Text(widget.categoriesChoice.choiceListGetter(indexes)),
               subtitle: Text('Hair Transplant is abluablu, research on progress'),
               isThreeLine: true,
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ServiceDetailsRoute()
-                  )
-                );
+                goToServiceDetailsRoute(context, indexes);
               }
-            ),
-          ),
-          Card(
-            elevation: 5,
-            child: ListTile(
-              leading: FlutterLogo(size: 45.0),
-              title: Text('Lip Reduction'),
-              subtitle: Text('Lip Reduction is abluablu, research on progress'),
-              isThreeLine: true,
-            ),
-          ),
-          Card(
-            elevation: 5,
-            child: ListTile(
-              leading: FlutterLogo(size: 45.0),
-              title: Text('Breast Implant'),
-              subtitle: Text('Breast Implant is abluablu, research on progress'),
-              isThreeLine: true,
-            ),
-          ),
-        ],
+            )
+          );
+        }),
       ),
+    );
+  }
+  goToServiceDetailsRoute(BuildContext context, int indexes) {
+    // var details = choices[indexes];
+    var details = widget.categoriesChoice;
+    Navigator.push(
+      context, 
+      MaterialPageRoute(
+        builder: (context) => ServiceDetailsRoute(
+          categoriesChoice: details,
+          indexNumber: indexes,          
+        ),
+      )
     );
   }
 }
 
-class ServiceDetailsRoute extends StatelessWidget {
+
+class ServiceDetailsRoute extends StatefulWidget {
+
+  final Choice categoriesChoice;
+  final int indexNumber;
+
+  ServiceDetailsRoute({@required this.categoriesChoice, @required this.indexNumber});
+
+  @override
+  ServiceDetailsRouteState createState() => ServiceDetailsRouteState();
+
+}
+
+class ServiceDetailsRouteState extends State<ServiceDetailsRoute> {
 
   @override
   Widget build(BuildContext context) {
       return DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: ReusableMaterial().getAppBarWithTabBar("Hair Transplant"),
-          body: Service().detailsTabBarView(),
+      length: 2,
+      child: Scaffold(
+        appBar: ReusableMaterial().getAppBarWithTabBar(widget.categoriesChoice.choiceListGetter(widget.indexNumber)),
+        body: TabBarView(
+          children: <Widget>[
+            ListView(
+              children: <Widget>[
+                Container(
+                  height: 20.0,
+                ),
+                Service().scrollableGallery(),
+                Service().longText(),
+              ],
+            ),
+            ListView(
+              children: <Widget>[
+                GestureDetector(
+                  child: Service().hospitalListView(),
+                  onTap: () {
+                    Navigator.push(
+                      context, 
+                      MaterialPageRoute(builder: (context) => ListCategoriesRoute()),
+                    );
+                  }
+                ),
+                Divider(height: 1,),
+                Service().hospitalListView(),
+                Divider(height: 1,),          
+                Service().hospitalListView(),
+                Divider(height: 1,),
+                Service().hospitalListView(),
+                Divider(height: 1,),
+                Service().hospitalListView(),
+              ],
+            )
+          ]
         )
-      );
+      )
+    );
   }
 }
