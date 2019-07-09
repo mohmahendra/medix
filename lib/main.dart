@@ -2,6 +2,8 @@ import 'package:compfest_aic_2019/CategoriesGrid.dart';
 import 'package:compfest_aic_2019/ReusableMaterial.dart';
 import 'package:compfest_aic_2019/Service.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
+
 
 void main() => runApp(MyApp());
 
@@ -30,6 +32,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<MyHomePage> {
+
+  Future timer() async {
+    //Todo Buat Timer Logo Screen 3-5 detik
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -215,7 +221,7 @@ class ServiceDetailsRouteState extends State<ServiceDetailsRoute> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ListCategoriesRoute()),
+                      MaterialPageRoute(builder: (context) => BookServiceRoute()),
                     );
                   }
                 ),
@@ -248,14 +254,60 @@ class ServiceDetailsRouteState extends State<ServiceDetailsRoute> {
   }
 }
 
-class BookServiceRoute extends StatelessWidget{
-  
+class BookServiceRoute extends StatefulWidget{
+
+  @override
+  _BookServiceRouteState createState() => _BookServiceRouteState();
+}
+
+class _BookServiceRouteState extends State<BookServiceRoute> {
+
+  String _dateValue = "";
+  String _timeValue = "";
+
+  Future _selectDate() async {
+    DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2019),
+        lastDate: DateTime(2022)
+    );
+    if(picked != null) setState(() {
+      _dateValue = picked.toString();
+    });
+  }
+
+  Future _selectTime() async {
+    TimeOfDay picked = await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now()
+    );
+    if(picked != null) setState(() {
+      _timeValue = picked.toString();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ReusableMaterial().getAppBar("Booking"),
-      body: Center(),
+//      appBar: ReusableMaterial().getAppBar("Booking"),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            RaisedButton(
+              onPressed: _selectDate,
+              child: Text("Select Date"),
+            ),
+            RaisedButton(
+              onPressed: _selectTime,
+              child: Text("Select Time"),
+            )
+          ],
+//        child: RaisedButton(
+//          onPressed: _selectDate,
+//          child: Text('Click me'),
+        ),
+      ),
     );
   }
-
 }
