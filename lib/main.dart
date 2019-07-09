@@ -22,19 +22,9 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
-  // _MyHomePageState createState() => _MyHomePageState();
   _HomePageState createState() => _HomePageState();
 
 }
@@ -54,7 +44,6 @@ class _HomePageState extends State<MyHomePage> {
                     begin: Alignment.topCenter,
                     end: Alignment.centerRight,
                     colors: [ReusableMaterial().appBarColorleft, ReusableMaterial().appBarColorRight]
-                    // colors: [appBarColorleft, appBarColorRight]
                   )
                 ),
               ),
@@ -76,71 +65,6 @@ class _HomePageState extends State<MyHomePage> {
             )
           )
         ],
-      )
-    );
-  }
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-
-    final categoriesButton = RaisedButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => ListCategoriesRoute()),
-        );
-      },
-      textColor: Colors.white,
-      padding: const EdgeInsets.all(0.0),
-      child: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: <Color>[
-              Color(0xFF0D47A1),
-              Color(0xFF1976D2),
-              Color(0xFF42A5F5),
-            ],
-          ),
-        ),
-        padding: const EdgeInsets.all(10.0),
-        child: const Text(
-          'Categories',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
-
-    final videoCallButton = RaisedButton(
-      onPressed: null,
-      child: const Text(
-        'Video Call',
-        style: TextStyle(fontSize: 20)
-      ),
-      
-    );
-
-    return Scaffold(
-      appBar: new ReusableMaterial().getAppBar("Home Page"),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(
-              height: 155.0,
-              child: Image.asset(
-                "assets/logo.png",
-                fit: BoxFit.contain,
-              ),
-            ),
-            SizedBox(height: 50.0),
-            categoriesButton,
-            SizedBox(height: 100.0),
-            videoCallButton,
-          ],
-        )
       )
     );
   }
@@ -230,7 +154,6 @@ class CategoriesRouteState extends State<CategoriesRoute> {
     );
   }
   goToServiceDetailsRoute(BuildContext context, int indexes) {
-    // var details = choices[indexes];
     var details = widget.categoriesChoice;
     Navigator.push(
       context, 
@@ -259,9 +182,18 @@ class ServiceDetailsRoute extends StatefulWidget {
 
 class ServiceDetailsRouteState extends State<ServiceDetailsRoute> {
 
+  void _showModalSheet() {
+    showModalBottomSheet(context: context, builder: (builder) {
+      return Container(
+        child: Text('Hellooow'),
+        padding: EdgeInsets.all(40.0),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-      return DefaultTabController(
+    return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: ReusableMaterial().getAppBarWithTabBar(widget.categoriesChoice.choiceListGetter(widget.indexNumber)),
@@ -282,7 +214,7 @@ class ServiceDetailsRouteState extends State<ServiceDetailsRoute> {
                   child: Service().hospitalListView(),
                   onTap: () {
                     Navigator.push(
-                      context, 
+                      context,
                       MaterialPageRoute(builder: (context) => ListCategoriesRoute()),
                     );
                   }
@@ -298,8 +230,32 @@ class ServiceDetailsRouteState extends State<ServiceDetailsRoute> {
               ],
             )
           ]
-        )
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              title: Text('Sort'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business),
+              title: Text('Filter')
+            )
+          ],
+        ),
       )
     );
   }
+}
+
+class BookServiceRoute extends StatelessWidget{
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: ReusableMaterial().getAppBar("Booking"),
+      body: Center(),
+    );
+  }
+
 }
