@@ -16,7 +16,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue
       ),
-      home: MyHomePage(),
+//      home: MyHomePage(),
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text("Tes Form"),
+      ),
+      body: MyCustomForm(),
+    ),
     );
   }
 }
@@ -188,15 +194,6 @@ class ServiceDetailsRoute extends StatefulWidget {
 
 class ServiceDetailsRouteState extends State<ServiceDetailsRoute> {
 
-  void _showModalSheet() {
-    showModalBottomSheet(context: context, builder: (builder) {
-      return Container(
-        child: Text('Hellooow'),
-        padding: EdgeInsets.all(40.0),
-      );
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -290,7 +287,7 @@ class _BookServiceRouteState extends State<BookServiceRoute> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: ReusableMaterial().getAppBar("Booking"),
+      appBar: ReusableMaterial().getAppBar("Booking"),
       body: Center(
         child: Column(
           children: <Widget>[
@@ -303,10 +300,62 @@ class _BookServiceRouteState extends State<BookServiceRoute> {
               child: Text("Select Time"),
             )
           ],
-//        child: RaisedButton(
-//          onPressed: _selectDate,
-//          child: Text('Click me'),
         ),
+      ),
+    );
+  }
+}
+
+// Create a Form widget.
+class MyCustomForm extends StatefulWidget {
+  @override
+  MyCustomFormState createState() {
+    return MyCustomFormState();
+  }
+}
+
+// Create a corresponding State class.
+// This class holds data related to the form.
+class MyCustomFormState extends State<MyCustomForm> {
+  // Create a global key that uniquely identifies the Form widget
+  // and allows validation of the form.
+  //
+  // Note: This is a GlobalKey<FormState>,
+  // not a GlobalKey<MyCustomFormState>.
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    // Build a Form widget using the _formKey created above.
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          TextFormField(
+            validator: (value) {
+              if (value.isEmpty) {
+                return 'Enter some text';
+              }
+              return null;
+            },
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: RaisedButton(
+              onPressed: () {
+                // Validate returns true if the form is valid, or false
+                // otherwise.
+                if (_formKey.currentState.validate()) {
+                  // If the form is valid, display a Snackbar.
+                  Scaffold.of(context)
+                      .showSnackBar(SnackBar(content: Text('Processing Data')));
+                }
+              },
+              child: Text('Submit'),
+            ),
+          ),
+        ],
       ),
     );
   }
