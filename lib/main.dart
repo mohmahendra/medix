@@ -16,13 +16,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue
       ),
-//      home: MyHomePage(),
-    home: Scaffold(
-      appBar: AppBar(
-        title: Text("Tes Form"),
-      ),
-      body: MyCustomForm(),
-    ),
+      home: MyHomePage(),
+//    home: Scaffold(
+//      appBar: AppBar(
+//        title: Text("Tes Form"),
+//      ),
+//      body: MyCustomForm(),
+//    ),
     );
   }
 }
@@ -86,18 +86,19 @@ class ListCategoriesRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new ReusableMaterial().getAppBar("Categories"),
+      appBar: ThreeLineCustomAppBar(height: 150),
       body: Container(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             TextField(
               decoration: InputDecoration(
-                labelText: "Search",
+                labelText: "Type in a surgery",
                 hintText: "e.g. Hair Transplant",
                 prefixIcon: Icon(Icons.search)
               ),
             ),
-            new Expanded(
+           Expanded(
               child: GridView.count(
                 crossAxisCount: 2,
                 children: List.generate(choices.length, (index) {
@@ -114,7 +115,32 @@ class ListCategoriesRoute extends StatelessWidget {
             )
           ],
         ),
-      )
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blueAccent
+              ),
+            ),
+            ListTile(
+              title: Text('item 1'),
+              onTap: () {
+
+              },
+            ),
+            ListTile(
+              title: Text('item 2'),
+              onTap: () {
+
+              },
+            )
+          ],
+        ),
+      ),
     );
   }
   goToCategoriesRoute(BuildContext context, int index) {
