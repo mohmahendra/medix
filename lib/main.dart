@@ -143,15 +143,31 @@ class _DashboardPageState extends State<DashboardPage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            ListTile(
-              leading: FlutterLogo(size: 40),
-              title: Text("Dashboard", style: TextStyle(fontSize: 20),),
-              subtitle: Text("Your Overview", style: TextStyle(fontSize: 12),),
+            GestureDetector(
+              child: ListTile(
+                leading: FlutterLogo(size: 40),
+                title: Text("Dashboard", style: TextStyle(fontSize: 20),),
+                subtitle: Text("Your Overview", style: TextStyle(fontSize: 12),),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DashboardPage())
+                );
+              }
             ),
-            ListTile(
-              leading: FlutterLogo(size: 40),
-              title: Text("Browse Surgery", style: TextStyle(fontSize: 20),),
-              subtitle: Text("Find Your Next Surgery", style: TextStyle(fontSize: 12),),
+            GestureDetector(
+              child: ListTile(
+                leading: FlutterLogo(size: 40),
+                title: Text("Browse Surgery", style: TextStyle(fontSize: 20),),
+                subtitle: Text("Find Your Next Surgery", style: TextStyle(fontSize: 12),),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ListCategoriesPage())
+                );
+              },
             ),
             ListTile(
               leading: FlutterLogo(size: 40),
@@ -207,23 +223,36 @@ class ListCategoriesPage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.blueAccent
+            GestureDetector(
+                child: ListTile(
+                  leading: FlutterLogo(size: 40),
+                  title: Text("Dashboard", style: TextStyle(fontSize: 20),),
+                  subtitle: Text("Your Overview", style: TextStyle(fontSize: 12),),
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DashboardPage())
+                  );
+                }
+            ),
+            GestureDetector(
+              child: ListTile(
+                leading: FlutterLogo(size: 40),
+                title: Text("Browse Surgery", style: TextStyle(fontSize: 20),),
+                subtitle: Text("Find Your Next Surgery", style: TextStyle(fontSize: 12),),
               ),
-            ),
-            ListTile(
-              title: Text('item 1'),
               onTap: () {
-
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ListCategoriesPage())
+                );
               },
             ),
             ListTile(
-              title: Text('item 2'),
-              onTap: () {
-
-              },
+              leading: FlutterLogo(size: 40),
+              title: Text("My Appoinment", style: TextStyle(fontSize: 20),),
+              subtitle: Text("History and Upcoming Appoinment", style: TextStyle(fontSize: 12),),
             )
           ],
         ),
