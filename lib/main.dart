@@ -55,14 +55,17 @@ class _HomePageState extends State<MyHomePage> {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.centerRight,
-                    colors: [ReusableMaterial().appBarColorleft, ReusableMaterial().appBarColorRight]
+                    colors: [
+                      ReusableMaterial().appBarColorleft,
+                      ReusableMaterial().appBarColorRight
+                    ]
                   )
                 ),
               ),
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ListCategoriesRoute()),
+                  MaterialPageRoute(builder: (context) => DashboardPage()),
                 );
               },
             ),
@@ -82,11 +85,95 @@ class _HomePageState extends State<MyHomePage> {
   }
 }
 
-class ListCategoriesRoute extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
+
+  @override
+  _DashboardPageState createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ThreeLineCustomAppBar(height: 150),
+      appBar: ThreeLineCustomAppBar(
+          height: 150,
+          upperText: "YOUR DASHBOARD",
+          lowerText: "Have a healthy life!"
+      ),
+      body: Column(
+        children: <Widget>[
+          Text("Your Appoinment", style: TextStyle(fontSize: 20),),
+          Container(
+            alignment: Alignment.center,
+            height: 200,
+            width: 370,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
+              borderRadius: BorderRadius.circular(15.0)
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5.0),
+              clipBehavior: Clip.hardEdge,
+              child: Center(
+                child: Text(
+                  "You Don’t Have Any Appoinment",
+                  style: TextStyle(fontSize: 24),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                child: Text("News For You", style: TextStyle(fontSize: 20),),
+              ),
+              Container(
+                width: 170,
+              ),
+              Text("Explore Article", style: TextStyle(fontSize: 12),),
+            ],
+          )
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            ListTile(
+              leading: FlutterLogo(size: 40),
+              title: Text("Dashboard", style: TextStyle(fontSize: 20),),
+              subtitle: Text("Your Overview", style: TextStyle(fontSize: 12),),
+            ),
+            ListTile(
+              leading: FlutterLogo(size: 40),
+              title: Text("Browse Surgery", style: TextStyle(fontSize: 20),),
+              subtitle: Text("Find Your Next Surgery", style: TextStyle(fontSize: 12),),
+            ),
+            ListTile(
+              leading: FlutterLogo(size: 40),
+              title: Text("My Appoinment", style: TextStyle(fontSize: 20),),
+              subtitle: Text("History and Upcoming Appoinment", style: TextStyle(fontSize: 12),),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ListCategoriesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: ThreeLineCustomAppBar(
+        height: 150,
+        upperText: "BOOK AN APPOINMENT",
+        lowerText: "Search for a surgery",
+      ),
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

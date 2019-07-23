@@ -46,12 +46,15 @@ class ReusableMaterial {
 
 class ThreeLineCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
+  final String upperText, lowerText;
   final appBarColorleft = const Color(0xFF56E7A5);
   final appBarColorRight = const Color(0xFF30D7D7);
 
   const ThreeLineCustomAppBar({
     Key key,
-    @required this.height
+    @required this.height,
+    @required this.upperText,
+    @required this.lowerText,
   }) : super(key:key);
 
   @override
@@ -62,7 +65,8 @@ class ThreeLineCustomAppBar extends StatelessWidget implements PreferredSizeWidg
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           colors: [appBarColorleft, appBarColorRight]
-        )
+        ),
+//        color: Colors.white
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +84,7 @@ class ThreeLineCustomAppBar extends StatelessWidget implements PreferredSizeWidg
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
               child: Text(
-                'BOOK AN APPOINTMENT',
+                upperText,
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.white
@@ -90,7 +94,7 @@ class ThreeLineCustomAppBar extends StatelessWidget implements PreferredSizeWidg
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
               child: Text(
-                'Search for a surgery',
+                lowerText,
                 style: TextStyle(
                   fontSize: 35,
                   color: Colors.white
