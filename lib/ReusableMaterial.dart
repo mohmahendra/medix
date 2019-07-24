@@ -13,7 +13,7 @@ class ReusableMaterial {
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            colors: [appBarColorleft,appBarColorRight]
+            colors: [appBarColorleft, appBarColorRight],
           )
         ),
       ),
@@ -41,6 +41,69 @@ class ReusableMaterial {
       ),
     );
   }
+
+  getTextFormField(String label, String hint) {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: label,
+        hintText: hint,
+      ),
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Enter Some Text';
+        }
+        return null;
+      }
+    );
+  }
+
+  getNumberFormField(String label, String hint) {
+    return TextFormField(
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(
+        labelText: label,
+        hintText: hint,
+      ),
+      validator: (value) {
+        if (value.isEmpty) {
+          return 'Enter Some Number';
+        }
+        return null;
+      }
+    );
+  }
+
+  getEmailFormField(String label, String hint) {
+    return TextFormField(
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+          labelText: label,
+          hintText: hint,
+        ),
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Enter Some Number';
+          }
+          return null;
+        }
+    );
+  }
+
+  getDateTimeFormField(String label, String hint) {
+    return TextFormField(
+        keyboardType: TextInputType.datetime,
+        decoration: InputDecoration(
+          labelText: label,
+          hintText: hint,
+        ),
+        validator: (value) {
+          if (value.isEmpty) {
+            return 'Enter Some Number';
+          }
+          return null;
+        }
+    );
+  }
 }
 
 
@@ -59,49 +122,51 @@ class ThreeLineCustomAppBar extends StatelessWidget implements PreferredSizeWidg
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: [appBarColorleft, appBarColorRight]
+    return Opacity(
+      opacity: 0.8,
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.centerLeft,
+            end: Alignment.centerRight,
+            colors: [appBarColorleft, appBarColorRight]
+          ),
         ),
-//        color: Colors.white
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.fromLTRB(5, 20, 20, 8),
-              child: IconButton(
-                icon: Icon(Icons.menu),
-                color: Colors.white,
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
-              child: Text(
-                upperText,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.fromLTRB(5, 20, 20, 8),
+                child: IconButton(
+                  icon: Icon(Icons.menu),
+                  color: Colors.white,
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
-              child: Text(
-                lowerText,
-                style: TextStyle(
-                  fontSize: 35,
-                  color: Colors.white
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 8, 20, 4),
+                child: Text(
+                  upperText,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white
+                  ),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
+                child: Text(
+                  lowerText,
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.white
+                  ),
+                ),
+              ),
+            ],
+        ),
       ),
     );
   }

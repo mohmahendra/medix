@@ -50,16 +50,19 @@ class _HomePageState extends State<MyHomePage> {
         children: <Widget>[
           Center(
             child: GestureDetector(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.centerRight,
-                    colors: [
-                      ReusableMaterial().appBarColorleft,
-                      ReusableMaterial().appBarColorRight
-                    ]
-                  )
+              child: Opacity(
+                opacity: 0.7,
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.centerRight,
+                      colors: [
+                        ReusableMaterial().appBarColorleft,
+                        ReusableMaterial().appBarColorRight
+                      ]
+                    )
+                  ),
                 ),
               ),
               onTap: () {
@@ -96,45 +99,130 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Todo beresin appbar di page ini
+
       appBar: ThreeLineCustomAppBar(
           height: 150,
           upperText: "YOUR DASHBOARD",
           lowerText: "Have a healthy life!"
       ),
-      body: Column(
+      body: Stack(
         children: <Widget>[
-          Text("Your Appoinment", style: TextStyle(fontSize: 20),),
-          Container(
-            alignment: Alignment.center,
-            height: 200,
-            width: 370,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-              borderRadius: BorderRadius.circular(15.0)
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5.0),
-              clipBehavior: Clip.hardEdge,
-              child: Center(
-                child: Text(
-                  "You Don’t Have Any Appoinment",
-                  style: TextStyle(fontSize: 24),
-                  textAlign: TextAlign.center,
+          Center(
+            child: Opacity(
+              opacity: 0.7,
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.centerRight,
+                    colors: [
+                      ReusableMaterial().appBarColorleft,
+                      ReusableMaterial().appBarColorRight
+                    ]
+                  )
                 ),
               ),
-            ),
+            )
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+          Column(
             children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                child: Text("News For You", style: TextStyle(fontSize: 20),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
+                    child: Text("Your Appoinment", style: TextStyle(fontSize: 20),),
+                  ),
+                ],
               ),
               Container(
-                width: 170,
+                alignment: Alignment.center,
+                height: 180,
+                width: 370,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                  borderRadius: BorderRadius.circular(15.0)
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5.0),
+                  clipBehavior: Clip.hardEdge,
+                  child: Center(
+                    child: Text(
+                      "You Don't Have Any Appoinment",
+                      style: TextStyle(fontSize: 24),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
               ),
-              Text("Explore Article", style: TextStyle(fontSize: 12),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
+                      child: Text("News For You", style: TextStyle(fontSize: 20),),
+                    ),
+                    Container(
+                      width: 160,
+                    ),
+                    Text("Explore Article", style: TextStyle(fontSize: 14),)
+                  ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Container(
+                    height: 180,
+                    width: 180,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(15.0)
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        FlutterLogo(size: 100,),
+                        Text("Kenapa Kita Harus Meminum Ibuprofen", textAlign: TextAlign.center,)
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 180,
+                    width: 180,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(15.0)
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        FlutterLogo(size: 100,),
+                        Text("Efek Samping Minuman Berkarbonasi", textAlign: TextAlign.center,)
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ButtonTheme(
+                  height: 40,
+                  minWidth: 380,
+                  child: RaisedButton(
+                    child: Text(
+                      "Book New Appoinment",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ListCategoriesPage())
+                      );
+                    }),
+                ),
+              ),
             ],
           )
         ],
@@ -360,7 +448,7 @@ class ServiceDetailsRouteState extends State<ServiceDetailsRoute> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => BookServiceRoute()),
+                      MaterialPageRoute(builder: (context) => ReservationPage()),
                     );
                   }
                 ),
@@ -393,16 +481,18 @@ class ServiceDetailsRouteState extends State<ServiceDetailsRoute> {
   }
 }
 
-class BookServiceRoute extends StatefulWidget{
+class ReservationPage extends StatefulWidget{
 
   @override
-  _BookServiceRouteState createState() => _BookServiceRouteState();
+  _ReservationPageState createState() => _ReservationPageState();
 }
 
-class _BookServiceRouteState extends State<BookServiceRoute> {
+class _ReservationPageState extends State<ReservationPage> {
 
   String _dateValue = "";
   String _timeValue = "";
+  final _formKey = GlobalKey<FormState>();
+
 
   Future _selectDate() async {
     DateTime picked = await showDatePicker(
@@ -426,13 +516,68 @@ class _BookServiceRouteState extends State<BookServiceRoute> {
     });
   }
 
+  getForm() {
+    final String x = "s";
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.fromLTRB(32, 8, 32, 4),
+            child: ReusableMaterial().getTextFormField(
+                "Full Name", "What is your full name?"),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(32, 8, 32, 4),
+            child: ReusableMaterial().getDateTimeFormField(
+                "Date of Birth", "Ex: 25/08/1997"),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(32, 8, 32, 4),
+            child: ReusableMaterial().getNumberFormField(
+                "Phone Number", "What is your phone number?"),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(32, 8, 32, 4),
+            child: ReusableMaterial().getEmailFormField(
+                "Email", "What is your email?"),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(32, 8, 32, 4),
+            child: ReusableMaterial().getNumberFormField(
+                "Weight (Kg)", "How much you weigh?"),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(32, 8, 32, 4),
+            child: ReusableMaterial().getNumberFormField(
+                "Height (Cm)", "How tall are you?"),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: RaisedButton(
+              onPressed: () {
+                if (_formKey.currentState.validate()) {
+                  Scaffold.of(context)
+                      .showSnackBar(SnackBar(content: Text('Processing Data')));
+                }
+              },
+              child: Text('Submit'),
+            )
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ReusableMaterial().getAppBar("Booking"),
+      appBar: ReusableMaterial().getAppBar("Reservation"),
+      resizeToAvoidBottomPadding: false,
       body: Center(
         child: Column(
           children: <Widget>[
+            getForm(),
             RaisedButton(
               onPressed: _selectDate,
               child: Text("Select Date"),
