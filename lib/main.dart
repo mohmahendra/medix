@@ -58,8 +58,8 @@ class _HomePageState extends State<MyHomePage> {
                       begin: Alignment.topCenter,
                       end: Alignment.centerRight,
                       colors: [
-                        ReusableMaterial().appBarColorleft,
-                        ReusableMaterial().appBarColorRight
+                        ReusableMaterial().primaryColorLeft,
+                        ReusableMaterial().primaryColorRight
                       ]
                     )
                   ),
@@ -100,12 +100,11 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // Todo beresin appbar di page ini
-
-      appBar: ThreeLineCustomAppBar(
-          height: 150,
-          upperText: "YOUR DASHBOARD",
-          lowerText: "Have a healthy life!"
-      ),
+//      appBar: ThreeLineCustomAppBar(
+//          height: 150,
+//          upperText: "YOUR DASHBOARD",
+//          lowerText: "Have a healthy life!"
+//      ),
       body: Stack(
         children: <Widget>[
           Center(
@@ -117,16 +116,30 @@ class _DashboardPageState extends State<DashboardPage> {
                     begin: Alignment.topCenter,
                     end: Alignment.centerRight,
                     colors: [
-                      ReusableMaterial().appBarColorleft,
-                      ReusableMaterial().appBarColorRight
+                      ReusableMaterial().primaryColorLeft,
+                      ReusableMaterial().primaryColorRight
                     ]
                   )
                 ),
               ),
             )
           ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: ThreeLineCustomAppBar(
+              height: 150,
+              upperText: "YOUR DASHBOARD",
+              lowerText: "Have a healthy life!",
+              transparent: true,
+            ),
+          ),
           Column(
             children: <Widget>[
+              Container(
+                height: 170,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[

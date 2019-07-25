@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ReusableMaterial {
-  final appBarColorleft = const Color(0xFF56E7A5);
-  final appBarColorRight = const Color(0xFF30D7D7);
+  final primaryColorLeft = const Color(0xFF56E7A5);
+  final primaryColorRight = const Color(0xFF30D7D7);
 
   getAppBar(String titleAB) {
     return AppBar(
@@ -13,7 +13,7 @@ class ReusableMaterial {
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            colors: [appBarColorleft, appBarColorRight],
+            colors: [primaryColorLeft, primaryColorRight],
           )
         ),
       ),
@@ -35,7 +35,7 @@ class ReusableMaterial {
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            colors: [appBarColorleft, appBarColorRight]
+            colors: [primaryColorLeft, primaryColorRight]
           )
         ),
       ),
@@ -117,6 +117,7 @@ class ReusableMaterial {
 class ThreeLineCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double height;
   final String upperText, lowerText;
+  final bool transparent;
   final appBarColorleft = const Color(0xFF56E7A5);
   final appBarColorRight = const Color(0xFF30D7D7);
 
@@ -125,7 +126,9 @@ class ThreeLineCustomAppBar extends StatelessWidget implements PreferredSizeWidg
     @required this.height,
     @required this.upperText,
     @required this.lowerText,
+    @required this.transparent,
   }) : super(key:key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +139,7 @@ class ThreeLineCustomAppBar extends StatelessWidget implements PreferredSizeWidg
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            colors: [appBarColorleft, appBarColorRight]
+            colors: getColor()
           ),
         ),
         child: Column(
@@ -176,6 +179,15 @@ class ThreeLineCustomAppBar extends StatelessWidget implements PreferredSizeWidg
         ),
       ),
     );
+  }
+
+  List<Color> getColor() {
+    if (transparent == true) {
+      return [Colors.transparent, Colors.transparent];
+    }
+    else {
+      return [ReusableMaterial().primaryColorLeft, ReusableMaterial().primaryColorRight];
+    }
   }
 
   @override

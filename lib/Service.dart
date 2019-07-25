@@ -112,11 +112,11 @@ class Service {
             Row(
               mainAxisSize: MainAxisSize.min,
               children:[
-                Icon(Icons.star, color: ReusableMaterial().appBarColorleft,),
-                Icon(Icons.star, color: ReusableMaterial().appBarColorleft,),
-                Icon(Icons.star, color: ReusableMaterial().appBarColorleft,),
-                Icon(Icons.star, color: ReusableMaterial().appBarColorleft,),
-                Icon(Icons.star, color: ReusableMaterial().appBarColorleft,),
+                Icon(Icons.star, color: ReusableMaterial().primaryColorLeft,),
+                Icon(Icons.star, color: ReusableMaterial().primaryColorLeft,),
+                Icon(Icons.star, color: ReusableMaterial().primaryColorLeft,),
+                Icon(Icons.star, color: ReusableMaterial().primaryColorLeft,),
+                Icon(Icons.star, color: ReusableMaterial().primaryColorLeft,),
               ],
             ),
             Text(
