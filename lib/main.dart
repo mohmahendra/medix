@@ -132,7 +132,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
-                    child: Text("Your Appoinment", style: TextStyle(fontSize: 20),),
+                    child: Text("Your Appoinment", style: ReusableMaterial().getWhiteTextStyle(20)),
                   ),
                 ],
               ),
@@ -150,7 +150,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: Center(
                     child: Text(
                       "You Don't Have Any Appoinment",
-                      style: TextStyle(fontSize: 24),
+                      style: ReusableMaterial().getWhiteTextStyle(24),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -161,12 +161,12 @@ class _DashboardPageState extends State<DashboardPage> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
-                      child: Text("News For You", style: TextStyle(fontSize: 20),),
+                      child: Text("News For You", style: ReusableMaterial().getWhiteTextStyle(20)),
                     ),
                     Container(
                       width: 160,
                     ),
-                    Text("Explore Article", style: TextStyle(fontSize: 14),)
+                    Text("Explore Article", style: ReusableMaterial().getWhiteTextStyle(14))
                   ],
               ),
               Row(
@@ -183,7 +183,11 @@ class _DashboardPageState extends State<DashboardPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         FlutterLogo(size: 100,),
-                        Text("Kenapa Kita Harus Meminum Ibuprofen", textAlign: TextAlign.center,)
+                        Text(
+                          "Kenapa Kita Harus Meminum Ibuprofen",
+                          textAlign: TextAlign.center,
+                          style: ReusableMaterial().getWhiteTextStyle(14),
+                        )
                       ],
                     ),
                   ),
@@ -198,7 +202,11 @@ class _DashboardPageState extends State<DashboardPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         FlutterLogo(size: 100,),
-                        Text("Efek Samping Minuman Berkarbonasi", textAlign: TextAlign.center,)
+                        Text(
+                          "Efek Samping Minuman Berkarbonasi",
+                          textAlign: TextAlign.center,
+                          style: ReusableMaterial().getWhiteTextStyle(14),
+                        )
                       ],
                     ),
                   ),
@@ -212,9 +220,10 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: RaisedButton(
                     child: Text(
                       "Book New Appoinment",
-                      style: TextStyle(fontSize: 20),
+                      style: ReusableMaterial().getWhiteTextStyle(20)
                     ),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                    color: Colors.transparent,
                     onPressed: () {
                       Navigator.push(
                         context,

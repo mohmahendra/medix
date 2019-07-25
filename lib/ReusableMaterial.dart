@@ -104,6 +104,13 @@ class ReusableMaterial {
         }
     );
   }
+
+  getWhiteTextStyle(double size) {
+    return TextStyle(
+      fontSize: size,
+      color: Colors.white
+    );
+  }
 }
 
 
