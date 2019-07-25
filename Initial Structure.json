@@ -12,9 +12,19 @@
     }
 ]
 }, {
-    "categoryName": "Minor Surgery",
+    "categoryName": "Neurology",
     "description": "An operation on the superficial structures of the body or a manipulative procedure with minimum risk"
 }, {
-    "categoryName": "Major Surgery",
+    "categoryName": "Cardiovascular",
     "description": "An operation upon an organ within the cranium, chest, abdomen, or pelvic cavity"
-}]
+}, {
+    "categoryName": "Plastic/Beauty Surgery",
+    "description": "An operation upon an organ within the cranium, chest, abdomen, or pelvic cavity"
+}, {
+    "categoryName": "Orthopedics",
+    "description": "An operation upon an organ within the cranium, chest, abdomen, or pelvic cavity"
+}, {
+    "categoryName": "Other",
+    "description": "An operation upon an organ within the cranium, chest, abdomen, or pelvic cavity"
+},
+]
