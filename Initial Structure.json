@@ -1,0 +1,20 @@
+[{
+    "categoryName": "Radiology",
+    "Description": "Diagnosis and treatment of disease using radiant energy",
+    "services": [{
+        "serviceName": "CT (Computerized Tomography) Scan",
+        "description": "Special X-ray tests that produce cross-sectional images of the body using X-rays and a compute"
+    }, {
+        "serviceName": "MRI (Magnetic Resonance Imaging)",
+        "description": "Imaging technique used to form pictures of the anatomy and the physiological processes of the body."
+    }, {
+
+    }
+]
+}, {
+    "categoryName": "Minor Surgery",
+    "description": "An operation on the superficial structures of the body or a manipulative procedure with minimum risk"
+}, {
+    "categoryName": "Major Surgery",
+    "description": "An operation upon an organ within the cranium, chest, abdomen, or pelvic cavity"
+}]
