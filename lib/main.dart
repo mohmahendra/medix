@@ -496,10 +496,13 @@ class ReservationPage extends StatefulWidget{
   _ReservationPageState createState() => _ReservationPageState();
 }
 
+enum SingingCharacter { lafayette, jefferson }
+
 class _ReservationPageState extends State<ReservationPage> {
 
   String _dateValue = "";
   String _timeValue = "";
+  SingingCharacter _character = SingingCharacter.lafayette;
   final _formKey = GlobalKey<FormState>();
 
 
@@ -532,38 +535,83 @@ class _ReservationPageState extends State<ReservationPage> {
       child: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(32, 8, 32, 4),
+            padding: const EdgeInsets.fromLTRB(32, 4, 32, 4),
             child: ReusableMaterial().getTextFormField(
                 "Full Name", "What is your full name?"),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(32, 8, 32, 4),
+            padding: const EdgeInsets.fromLTRB(32, 4, 32, 4),
             child: ReusableMaterial().getDateTimeFormField(
                 "Date of Birth", "Ex: 25/08/1997"),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(32, 8, 32, 4),
+            padding: const EdgeInsets.fromLTRB(32, 4, 32, 4),
             child: ReusableMaterial().getNumberFormField(
                 "Phone Number", "What is your phone number?"),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(32, 8, 32, 4),
+            padding: const EdgeInsets.fromLTRB(32, 4, 32, 4),
             child: ReusableMaterial().getEmailFormField(
                 "Email", "What is your email?"),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(32, 8, 32, 4),
+            padding: const EdgeInsets.fromLTRB(32, 4, 32, 4),
             child: ReusableMaterial().getNumberFormField(
                 "Weight (Kg)", "How much you weigh?"),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(32, 8, 32, 4),
+            padding: const EdgeInsets.fromLTRB(32, 4, 32, 4),
             child: ReusableMaterial().getNumberFormField(
                 "Height (Cm)", "How tall are you?"),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: RaisedButton(
+          Text(
+            'Gender',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Radio(
+                value: SingingCharacter.lafayette,
+                groupValue: _character,
+                onChanged: (SingingCharacter value) {
+                  setState(() { _character = value; });
+                },
+              ),
+              Text(
+                'Male',
+                style: TextStyle(fontSize: 16),
+              ),
+              Radio(
+                value: SingingCharacter.jefferson,
+                groupValue: _character,
+                onChanged: (SingingCharacter value) {
+                  setState(() { _character = value; });
+                },
+              ),
+              Text(
+                'Female',
+                style: TextStyle(fontSize: 16),
+              )
+            ],
+          ),
+          Container(
+            height: 40,
+            width: 350,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            child: Center(
+              child: Text(
+                'Reservation Date',
+              ),
+            ),
+          ),
+          RaisedButton(
               onPressed: () {
                 if (_formKey.currentState.validate()) {
                   Scaffold.of(context)
@@ -572,7 +620,6 @@ class _ReservationPageState extends State<ReservationPage> {
               },
               child: Text('Submit'),
             )
-          )
         ],
       ),
     );
@@ -587,14 +634,14 @@ class _ReservationPageState extends State<ReservationPage> {
         child: Column(
           children: <Widget>[
             getForm(),
-            RaisedButton(
-              onPressed: _selectDate,
-              child: Text("Select Date"),
-            ),
-            RaisedButton(
-              onPressed: _selectTime,
-              child: Text("Select Time"),
-            )
+//            RaisedButton(
+//              onPressed: _selectDate,
+//              child: Text("Select Date"),
+//            ),
+//            RaisedButton(
+//              onPressed: _selectTime,
+//              child: Text("Select Time"),
+//            )
           ],
         ),
       ),
