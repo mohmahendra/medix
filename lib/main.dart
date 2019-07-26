@@ -3,7 +3,10 @@ import 'package:compfest_aic_2019/ReusableMaterial.dart';
 import 'package:compfest_aic_2019/Service.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:intl/intl.dart';
 
+//datetime_picker_formfield 0.4.0 author Jacob Phillips
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 void main() => runApp(MyApp());
 
@@ -542,7 +545,6 @@ class _ReservationPageState extends State<ReservationPage> {
   }
 
   getForm() {
-    final String x = "s";
     return Form(
       key: _formKey,
       child: Column(
@@ -611,6 +613,12 @@ class _ReservationPageState extends State<ReservationPage> {
               )
             ],
           ),
+//          BasicDateField(),
+//          SizedBox(height: 24),
+//          BasicTimeField(),
+//          SizedBox(height: 24),
+//          BasicDateTimeField(),
+//          SizedBox(height: 24,),
           Container(
             height: 40,
             width: 350,
@@ -632,7 +640,7 @@ class _ReservationPageState extends State<ReservationPage> {
                 }
               },
               child: Text('Submit'),
-            )
+          ),
         ],
       ),
     );
@@ -644,7 +652,7 @@ class _ReservationPageState extends State<ReservationPage> {
       appBar: ReusableMaterial().getAppBar("Reservation"),
       resizeToAvoidBottomPadding: false,
       body: Center(
-        child: Column(
+        child: ListView(
           children: <Widget>[
             getForm(),
 //            RaisedButton(
@@ -658,6 +666,7 @@ class _ReservationPageState extends State<ReservationPage> {
           ],
         ),
       ),
+      resizeToAvoidBottomInset: true,
     );
   }
 }
@@ -714,5 +723,35 @@ class MyCustomFormState extends State<MyCustomForm> {
         ],
       ),
     );
+  }
+}
+
+class BasicDateTimeField extends StatelessWidget {
+  final format = DateFormat("yyyy-MM-dd HH:mm");
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: <Widget>[
+      Text('Basic date & time field (${format.pattern})'),
+      DateTimeField(
+        format: format,
+        onShowPicker: (context, currentValue) async {
+          final date = await showDatePicker(
+              context: context,
+              firstDate: DateTime(1900),
+              initialDate: currentValue ?? DateTime.now(),
+              lastDate: DateTime(2100));
+          if (date != null) {
+            final time = await showTimePicker(
+              context: context,
+              initialTime:
+              TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+            );
+            return DateTimeField.combine(date, time);
+          } else {
+            return currentValue;
+          }
+        },
+      ),
+    ]);
   }
 }
