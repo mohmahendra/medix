@@ -3,8 +3,11 @@ import 'package:compfest_aic_2019/ReusableMaterial.dart';
 import 'package:compfest_aic_2019/Service.dart';
 import 'package:compfest_aic_2019/StringContent.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
+import 'package:http/http.dart';
 import 'package:intl/intl.dart';
+import 'dart:async';
+import 'dart:convert' as convert;
+
 
 //datetime_picker_formfield 0.4.0 author Jacob Phillips
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
@@ -284,10 +287,18 @@ class _DashboardPageState extends State<DashboardPage> {
                 );
               },
             ),
-            ListTile(
-              leading: FlutterLogo(size: 40),
-              title: Text("My Appoinment", style: TextStyle(fontSize: 20),),
-              subtitle: Text("History and Upcoming Appoinment", style: TextStyle(fontSize: 12),),
+            GestureDetector(
+              child: ListTile(
+                leading: FlutterLogo(size: 40),
+                title: Text("My Appoinment", style: TextStyle(fontSize: 20),),
+                subtitle: Text("History and Upcoming Appoinment", style: TextStyle(fontSize: 12),),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AppointmentRoute())
+                );
+              },
             )
           ],
         ),
@@ -305,12 +316,6 @@ class _DashboardPageHCState extends State<DashboardPageHC> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Todo beresin appbar di page ini
-//      appBar: ThreeLineCustomAppBar(
-//          height: 150,
-//          upperText: "YOUR DASHBOARD",
-//          lowerText: "Have a healthy life!"
-//      ),
       body: Stack(
         children: <Widget>[
           Center(
@@ -513,6 +518,205 @@ class _DashboardPageHCState extends State<DashboardPageHC> {
                 );
               },
             ),
+            GestureDetector(
+              child: ListTile(
+                leading: FlutterLogo(size: 40),
+                title: Text("My Appoinment", style: TextStyle(fontSize: 20),),
+                subtitle: Text("History and Upcoming Appoinment", style: TextStyle(fontSize: 12),),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AppointmentRoute())
+                );
+              },
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AppointmentRoute extends StatefulWidget {
+  @override
+  _AppointmentRouteState createState() => _AppointmentRouteState();
+}
+
+class _AppointmentRouteState extends State<AppointmentRoute> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Center(
+              child: Opacity(
+                opacity: 0.7,
+                child: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.centerRight,
+                          colors: [
+                            ReusableMaterial().primaryColorLeft,
+                            ReusableMaterial().primaryColorRight
+                          ]
+                      )
+                  ),
+                ),
+              )
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: ThreeLineCustomAppBar(
+              height: 150,
+              upperText: "YOUR APPOINMENT",
+              lowerText: "You Have 1 Upcoming Appoinment",
+              transparent: true,
+            ),
+          ),
+          Column(
+            children: <Widget>[
+              Container(
+                height: 200,
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 180,
+                  width: 370,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(15.0)),
+                  child: Row(
+                    children: <Widget>[
+                      FlutterLogo(size: 125),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
+                            child: Text(
+                                "RSPP",
+                                style: ReusableMaterial().getWhiteTextStyle(30)
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 8, 4),
+                            child: Text(
+                                "July 28, 16.00",
+                                style: ReusableMaterial().getWhiteTextStyle(25)
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 4, 8, 8),
+                            child: Text(
+                                "Lip Reduction",
+                                style: ReusableMaterial().getWhiteTextStyle(25)
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 4, 8, 4),
+                            child: Text("Cancel", style: TextStyle(fontSize: 25, color: Colors.red),),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
+                    child: Text("YOUR PAST APPOINMENT",
+                        style: ReusableMaterial().getWhiteTextStyle(20)),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 8, 16),
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 180,
+                  width: 370,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                      borderRadius: BorderRadius.circular(15.0)),
+                  child: Row(
+                    children: <Widget>[
+                      FlutterLogo(size: 125),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
+                            child: Text("RSPP", style: TextStyle(fontSize: 30)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 0, 8, 4),
+                            child: Text("July 20, 13.00", style: TextStyle(fontSize: 25)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 4, 8, 8),
+                            child: Text("Hair Transplant", style: TextStyle(fontSize: 25)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20, 4, 8, 4),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children:[
+                                Icon(Icons.star,),
+                                Icon(Icons.star,),
+                                Icon(Icons.star,),
+                                Icon(Icons.star,),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            GestureDetector(
+                child: ListTile(
+                  leading: FlutterLogo(size: 40),
+                  title: Text("Dashboard", style: TextStyle(fontSize: 20),),
+                  subtitle: Text("Your Overview", style: TextStyle(fontSize: 12),),
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DashboardPage())
+                  );
+                }
+            ),
+            GestureDetector(
+              child: ListTile(
+                leading: FlutterLogo(size: 40),
+                title: Text("Browse Surgery", style: TextStyle(fontSize: 20),),
+                subtitle: Text("Find Your Next Surgery", style: TextStyle(fontSize: 12),),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ListCategoriesPage())
+                );
+              },
+            ),
             ListTile(
               leading: FlutterLogo(size: 40),
               title: Text("My Appoinment", style: TextStyle(fontSize: 20),),
@@ -604,16 +808,24 @@ class ListCategoriesPage extends StatelessWidget {
                         builder: (context) => ListCategoriesPage()));
               },
             ),
-            ListTile(
-              leading: FlutterLogo(size: 40),
-              title: Text(
-                "My Appoinment",
-                style: TextStyle(fontSize: 20),
+            GestureDetector(
+              child: ListTile(
+                leading: FlutterLogo(size: 40),
+                title: Text(
+                  "My Appoinment",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: Text(
+                  "History and Upcoming Appoinment",
+                  style: TextStyle(fontSize: 12),
+                ),
               ),
-              subtitle: Text(
-                "History and Upcoming Appoinment",
-                style: TextStyle(fontSize: 12),
-              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AppointmentRoute())
+                );
+              },
             )
           ],
         ),

@@ -108,7 +108,7 @@ class ReusableMaterial {
   getWhiteTextStyle(double size) {
     return TextStyle(
       fontSize: size,
-      color: Colors.black
+      color: Colors.white
     );
   }
 }
