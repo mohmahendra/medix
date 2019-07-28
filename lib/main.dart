@@ -40,26 +40,27 @@ class _HomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
-      children: <Widget>[
-        Center(
-          child: GestureDetector(
-            child: Opacity(
-              opacity: 0.7,
-              child: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.centerRight,
-                        colors: [
-                      ReusableMaterial().primaryColorLeft,
-                      ReusableMaterial().primaryColorRight
-                    ])),
-              ),
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => DashboardPage()),
+          children: <Widget>[
+            Center(
+              child: GestureDetector(
+                child: Opacity(
+                  opacity: 0.7,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.centerRight,
+                            colors: [
+                              ReusableMaterial().primaryColorLeft,
+                              ReusableMaterial().primaryColorRight
+                            ]
+                        )
+                    ),
+                  ),
+                ),
+                onTap: () {
+                  Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => DashboardPage()),
               );
             },
           ),
@@ -295,7 +296,12 @@ class _DashboardPageState extends State<DashboardPage> {
   }
 }
 
-class _DashboardPageHCState extends State<DashboardPage> {
+class DashboardPageHC extends StatefulWidget {
+  @override
+  _DashboardPageHCState createState() => _DashboardPageHCState();
+}
+
+class _DashboardPageHCState extends State<DashboardPageHC> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -357,16 +363,27 @@ class _DashboardPageHCState extends State<DashboardPage> {
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.circular(15.0)),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5.0),
-                  clipBehavior: Clip.hardEdge,
-                  child: Center(
-                    child: Text(
-                      "You Don't Have Any Appoinment",
-                      style: ReusableMaterial().getWhiteTextStyle(24),
-                      textAlign: TextAlign.center,
+                child: Row(
+                  children: <Widget>[
+                    FlutterLogo(size: 125),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(8, 20, 8, 8),
+                          child: Text("RSPP", style: TextStyle(fontSize: 30)),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
+                          child: Text("July 28, 16.00", style: TextStyle(fontSize: 27)),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
+                          child: Text("Lip Reduction", style: TextStyle(fontSize: 27)),
+                        ),
+                      ],
                     ),
-                  ),
+                  ],
                 ),
               ),
               Row(
@@ -892,7 +909,7 @@ class _ReservationPageState extends State<ReservationPage> {
                 if (_formKey.currentState.validate()) {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => DashboardPage()),
+                    MaterialPageRoute(builder: (context) => DashboardPageHC()),
                   );
                 }
               },
