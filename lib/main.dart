@@ -11,14 +11,11 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Compfest Demo App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: MyHomePage(),
 //    home: Scaffold(
 //      appBar: AppBar(
@@ -37,11 +34,9 @@ class MyHomePage extends StatefulWidget {
 
   @override
   _HomePageState createState() => _HomePageState();
-
 }
 
 class _HomePageState extends State<MyHomePage> {
-
   Future timer() async {
     //Todo Buat Timer Logo Screen 3-5 detik
   }
@@ -49,56 +44,50 @@ class _HomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Center(
-            child: GestureDetector(
-              child: Opacity(
-                opacity: 0.7,
-                child: Container(
-                  decoration: BoxDecoration(
+        body: Stack(
+      children: <Widget>[
+        Center(
+          child: GestureDetector(
+            child: Opacity(
+              opacity: 0.7,
+              child: Container(
+                decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.centerRight,
-                      colors: [
-                        ReusableMaterial().primaryColorLeft,
-                        ReusableMaterial().primaryColorRight
-                      ]
-                    )
-                  ),
-                ),
+                        begin: Alignment.topCenter,
+                        end: Alignment.centerRight,
+                        colors: [
+                      ReusableMaterial().primaryColorLeft,
+                      ReusableMaterial().primaryColorRight
+                    ])),
               ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DashboardPage()),
-                );
-              },
             ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => DashboardPage()),
+              );
+            },
           ),
-          Center(
+        ),
+        Center(
             child: SizedBox(
-              height: 100.0,
-              child: Image.asset(
-                "assets/medix.png",
-                fit: BoxFit.fill,
-              ),
-            )
-          )
-        ],
-      )
-    );
+          height: 100.0,
+          child: Image.asset(
+            "assets/medix.png",
+            fit: BoxFit.fill,
+          ),
+        ))
+      ],
+    ));
   }
 }
 
 class DashboardPage extends StatefulWidget {
-
   @override
   _DashboardPageState createState() => _DashboardPageState();
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,22 +100,19 @@ class _DashboardPageState extends State<DashboardPage> {
       body: Stack(
         children: <Widget>[
           Center(
-            child: Opacity(
-              opacity: 0.7,
-              child: Container(
-                decoration: BoxDecoration(
+              child: Opacity(
+            opacity: 0.7,
+            child: Container(
+              decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.centerRight,
-                    colors: [
-                      ReusableMaterial().primaryColorLeft,
-                      ReusableMaterial().primaryColorRight
-                    ]
-                  )
-                ),
-              ),
-            )
-          ),
+                      begin: Alignment.topCenter,
+                      end: Alignment.centerRight,
+                      colors: [
+                    ReusableMaterial().primaryColorLeft,
+                    ReusableMaterial().primaryColorRight
+                  ])),
+            ),
+          )),
           Positioned(
             top: 0,
             left: 0,
@@ -148,7 +134,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
-                    child: Text("Your Appoinment", style: ReusableMaterial().getWhiteTextStyle(20)),
+                    child: Text("Your Appoinment",
+                        style: ReusableMaterial().getWhiteTextStyle(20)),
                   ),
                 ],
               ),
@@ -157,9 +144,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 height: 180,
                 width: 370,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(15.0)
-                ),
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(15.0)),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5.0),
                   clipBehavior: Clip.hardEdge,
@@ -174,16 +160,18 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
-                      child: Text("News For You", style: ReusableMaterial().getWhiteTextStyle(20)),
-                    ),
-                    Container(
-                      width: 160,
-                    ),
-                    Text("Explore Article", style: ReusableMaterial().getWhiteTextStyle(14))
-                  ],
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
+                    child: Text("News For You",
+                        style: ReusableMaterial().getWhiteTextStyle(20)),
+                  ),
+                  Container(
+                    width: 160,
+                  ),
+                  Text("Explore Article",
+                      style: ReusableMaterial().getWhiteTextStyle(14))
+                ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -192,13 +180,14 @@ class _DashboardPageState extends State<DashboardPage> {
                     height: 180,
                     width: 180,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(15.0)
-                    ),
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(15.0)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        FlutterLogo(size: 100,),
+                        FlutterLogo(
+                          size: 100,
+                        ),
                         Text(
                           "Kenapa Kita Harus Meminum Ibuprofen",
                           textAlign: TextAlign.center,
@@ -212,12 +201,13 @@ class _DashboardPageState extends State<DashboardPage> {
                     width: 180,
                     decoration: BoxDecoration(
                         border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(15.0)
-                    ),
+                        borderRadius: BorderRadius.circular(15.0)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        FlutterLogo(size: 100,),
+                        FlutterLogo(
+                          size: 100,
+                        ),
                         Text(
                           "Efek Samping Minuman Berkarbonasi",
                           textAlign: TextAlign.center,
@@ -234,18 +224,17 @@ class _DashboardPageState extends State<DashboardPage> {
                   height: 40,
                   minWidth: 380,
                   child: RaisedButton(
-                    child: Text(
-                      "Book New Appoinment",
-                      style: ReusableMaterial().getWhiteTextStyle(20)
-                    ),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                    color: Colors.transparent,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ListCategoriesPage())
-                      );
-                    }),
+                      child: Text("Book New Appoinment",
+                          style: ReusableMaterial().getWhiteTextStyle(20)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      color: Colors.transparent,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListCategoriesPage()));
+                      }),
                 ),
               ),
             ],
@@ -257,35 +246,50 @@ class _DashboardPageState extends State<DashboardPage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             GestureDetector(
+                child: ListTile(
+                  leading: FlutterLogo(size: 40),
+                  title: Text(
+                    "Dashboard",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  subtitle: Text(
+                    "Your Overview",
+                    style: TextStyle(fontSize: 12),
+                  ),
+                ),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DashboardPage()));
+                }),
+            GestureDetector(
               child: ListTile(
                 leading: FlutterLogo(size: 40),
-                title: Text("Dashboard", style: TextStyle(fontSize: 20),),
-                subtitle: Text("Your Overview", style: TextStyle(fontSize: 12),),
+                title: Text(
+                  "Browse Surgery",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: Text(
+                  "Find Your Next Surgery",
+                  style: TextStyle(fontSize: 12),
+                ),
               ),
               onTap: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => DashboardPage())
-                );
-              }
-            ),
-            GestureDetector(
-              child: ListTile(
-                leading: FlutterLogo(size: 40),
-                title: Text("Browse Surgery", style: TextStyle(fontSize: 20),),
-                subtitle: Text("Find Your Next Surgery", style: TextStyle(fontSize: 12),),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ListCategoriesPage())
-                );
+                    MaterialPageRoute(
+                        builder: (context) => ListCategoriesPage()));
               },
             ),
             ListTile(
               leading: FlutterLogo(size: 40),
-              title: Text("My Appoinment", style: TextStyle(fontSize: 20),),
-              subtitle: Text("History and Upcoming Appoinment", style: TextStyle(fontSize: 12),),
+              title: Text(
+                "My Appoinment",
+                style: TextStyle(fontSize: 20),
+              ),
+              subtitle: Text(
+                "History and Upcoming Appoinment",
+                style: TextStyle(fontSize: 12),
+              ),
             )
           ],
         ),
@@ -313,25 +317,24 @@ class ListCategoriesPage extends StatelessWidget {
                 hintText: "e.g. Hair Transplant",
                 prefixIcon: Icon(Icons.search),
               ),
-              onTap: (){
+              onTap: () {
                 showSearch(context: context, delegate: Search());
               },
             ),
-           Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                children: List.generate(choices.length, (index) {
-                  return GestureDetector(
-                    child: GridTile(
-                      child: CategoriesGrid(choice: choices[index],)
-                      ),
-                    onTap: () {
-                      goToCategoriesRoute(context, index);
-                    },
-                  );
-                })
-              )
-            )
+            Expanded(
+                child: GridView.count(
+                    crossAxisCount: 2,
+                    children: List.generate(choices.length, (index) {
+                      return GestureDetector(
+                        child: GridTile(
+                            child: CategoriesGrid(
+                          choice: choices[index],
+                        )),
+                        onTap: () {
+                          goToCategoriesRoute(context, index);
+                        },
+                      );
+                    })))
           ],
         ),
       ),
@@ -342,124 +345,135 @@ class ListCategoriesPage extends StatelessWidget {
             GestureDetector(
                 child: ListTile(
                   leading: FlutterLogo(size: 40),
-                  title: Text("Dashboard", style: TextStyle(fontSize: 20),),
-                  subtitle: Text("Your Overview", style: TextStyle(fontSize: 12),),
+                  title: Text(
+                    "Dashboard",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  subtitle: Text(
+                    "Your Overview",
+                    style: TextStyle(fontSize: 12),
+                  ),
                 ),
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => DashboardPage())
-                  );
-                }
-            ),
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DashboardPage()));
+                }),
             GestureDetector(
               child: ListTile(
                 leading: FlutterLogo(size: 40),
-                title: Text("Browse Surgery", style: TextStyle(fontSize: 20),),
-                subtitle: Text("Find Your Next Surgery", style: TextStyle(fontSize: 12),),
+                title: Text(
+                  "Browse Surgery",
+                  style: TextStyle(fontSize: 20),
+                ),
+                subtitle: Text(
+                  "Find Your Next Surgery",
+                  style: TextStyle(fontSize: 12),
+                ),
               ),
               onTap: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ListCategoriesPage())
-                );
+                    MaterialPageRoute(
+                        builder: (context) => ListCategoriesPage()));
               },
             ),
             ListTile(
               leading: FlutterLogo(size: 40),
-              title: Text("My Appoinment", style: TextStyle(fontSize: 20),),
-              subtitle: Text("History and Upcoming Appoinment", style: TextStyle(fontSize: 12),),
+              title: Text(
+                "My Appoinment",
+                style: TextStyle(fontSize: 20),
+              ),
+              subtitle: Text(
+                "History and Upcoming Appoinment",
+                style: TextStyle(fontSize: 12),
+              ),
             )
           ],
         ),
       ),
     );
   }
+
   goToCategoriesRoute(BuildContext context, int index) {
     var details = choices[index];
     Navigator.push(
-      context, 
-      MaterialPageRoute(
-        builder: (context) => CategoriesRoute(
-          categoriesChoice: details,
-        ),
-      )
-    );
+        context,
+        MaterialPageRoute(
+          builder: (context) => CategoriesRoute(
+            categoriesChoice: details,
+          ),
+        ));
   }
 }
 
 class CategoriesRoute extends StatefulWidget {
-
   final Choice categoriesChoice;
 
   CategoriesRoute({@required this.categoriesChoice});
 
   @override
   CategoriesRouteState createState() => CategoriesRouteState();
-
 }
 
 class CategoriesRouteState extends State<CategoriesRoute> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ReusableMaterial().getAppBar(widget.categoriesChoice.choiceTitleGetter()),
+      appBar: ReusableMaterial()
+          .getAppBar(widget.categoriesChoice.choiceTitleGetter()),
       body: ListView(
-        children: List.generate(widget.categoriesChoice.choiceListLength(), (indexes) {
+        children: List.generate(widget.categoriesChoice.choiceListLength(),
+            (indexes) {
           return Card(
-            elevation: 5,
-            child: ListTile(
-              leading: FlutterLogo(size: 45.0),
-              title: Text(widget.categoriesChoice.choiceListGetter(indexes)),
-              subtitle: Text('Hair Transplant is abluablu, research on progress'),
-              isThreeLine: true,
-              onTap: () {
-                goToServiceDetailsRoute(context, indexes);
-              }
-            )
-          );
+              elevation: 5,
+              child: ListTile(
+                  leading: FlutterLogo(size: 45.0),
+                  title:
+                      Text(widget.categoriesChoice.choiceListGetter(indexes)),
+                  subtitle:
+                      Text('Hair Transplant is abluablu, research on progress'),
+                  isThreeLine: true,
+                  onTap: () {
+                    goToServiceDetailsRoute(context, indexes);
+                  }));
         }),
       ),
     );
   }
+
   goToServiceDetailsRoute(BuildContext context, int indexes) {
     var details = widget.categoriesChoice;
     Navigator.push(
-      context, 
-      MaterialPageRoute(
-        builder: (context) => ServiceDetailsRoute(
-          categoriesChoice: details,
-          indexNumber: indexes,          
-        ),
-      )
-    );
+        context,
+        MaterialPageRoute(
+          builder: (context) => ServiceDetailsRoute(
+            categoriesChoice: details,
+            indexNumber: indexes,
+          ),
+        ));
   }
 }
 
-
 class ServiceDetailsRoute extends StatefulWidget {
-
   final Choice categoriesChoice;
   final int indexNumber;
 
-  ServiceDetailsRoute({@required this.categoriesChoice, @required this.indexNumber});
+  ServiceDetailsRoute(
+      {@required this.categoriesChoice, @required this.indexNumber});
 
   @override
   ServiceDetailsRouteState createState() => ServiceDetailsRouteState();
-
 }
 
 class ServiceDetailsRouteState extends State<ServiceDetailsRoute> {
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: ReusableMaterial().getAppBarWithTabBar(widget.categoriesChoice.choiceListGetter(widget.indexNumber)),
-        body: TabBarView(
-          children: <Widget>[
+        length: 2,
+        child: Scaffold(
+          appBar: ReusableMaterial().getAppBarWithTabBar(
+              widget.categoriesChoice.choiceListGetter(widget.indexNumber)),
+          body: TabBarView(children: <Widget>[
             ListView(
               children: <Widget>[
                 Container(
@@ -472,33 +486,38 @@ class ServiceDetailsRouteState extends State<ServiceDetailsRoute> {
             ListView(
               children: <Widget>[
                 GestureDetector(
-                  child: Service().hospitalListView(),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ReservationPage()),
-                    );
-                  }
+                    child: Service().hospitalListView(),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ReservationPage()),
+                      );
+                    }),
+                Divider(
+                  height: 1,
                 ),
-                Divider(height: 1,),
                 Service().hospitalListView(),
-                Divider(height: 1,),          
+                Divider(
+                  height: 1,
+                ),
                 Service().hospitalListView(),
-                Divider(height: 1,),
+                Divider(
+                  height: 1,
+                ),
                 Service().hospitalListView(),
-                Divider(height: 1,),
+                Divider(
+                  height: 1,
+                ),
                 Service().hospitalListView(),
               ],
             )
-          ]
-        ),
-      )
-    );
+          ]),
+        ));
   }
 }
 
-class ReservationPage extends StatefulWidget{
-
+class ReservationPage extends StatefulWidget {
   @override
   _ReservationPageState createState() => _ReservationPageState();
 }
@@ -507,6 +526,7 @@ enum SingingCharacter { lafayette, jefferson }
 
 class BasicDateTimeField extends StatelessWidget {
   final format = DateFormat("yyyy-MM-dd HH:mm");
+
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
@@ -523,7 +543,7 @@ class BasicDateTimeField extends StatelessWidget {
             final time = await showTimePicker(
               context: context,
               initialTime:
-              TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+                  TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
             );
             return DateTimeField.combine(date, time);
           } else {
@@ -536,7 +556,6 @@ class BasicDateTimeField extends StatelessWidget {
 }
 
 class _ReservationPageState extends State<ReservationPage> {
-
   String _dateValue = "";
   String _timeValue = "";
   final format = DateFormat("yyyy-MM-dd HH:mm");
@@ -548,15 +567,12 @@ class _ReservationPageState extends State<ReservationPage> {
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(2019),
-        lastDate: DateTime(2022)
-    );
+        lastDate: DateTime(2022));
     if (date != null) {
-      TimeOfDay time = await showTimePicker(
-          context: context,
-          initialTime: TimeOfDay.now()
-      );
+      TimeOfDay time =
+          await showTimePicker(context: context, initialTime: TimeOfDay.now());
       setState(() {
-        String formattedDateTime =DateFormat("yyyy-MM-dd HH:mm")
+        String formattedDateTime = DateFormat("yyyy-MM-dd HH:mm")
             .format(DateTimeField.combine(date, time));
         _dateValue = formattedDateTime;
       });
@@ -567,13 +583,12 @@ class _ReservationPageState extends State<ReservationPage> {
   }
 
   Future _selectTime() async {
-    TimeOfDay picked = await showTimePicker(
-        context: context,
-        initialTime: TimeOfDay.now()
-    );
-    if(picked != null) setState(() {
-      _timeValue = picked.toString();
-    });
+    TimeOfDay picked =
+        await showTimePicker(context: context, initialTime: TimeOfDay.now());
+    if (picked != null)
+      setState(() {
+        _timeValue = picked.toString();
+      });
   }
 
   getForm() {
@@ -583,13 +598,13 @@ class _ReservationPageState extends State<ReservationPage> {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.fromLTRB(32, 4, 32, 4),
-            child: ReusableMaterial().getTextFormField(
-                "Full Name", "What is your full name?"),
+            child: ReusableMaterial()
+                .getTextFormField("Full Name", "What is your full name?"),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(32, 4, 32, 4),
-            child: ReusableMaterial().getDateTimeFormField(
-                "Date of Birth", "Ex: 25/08/1997"),
+            child: ReusableMaterial()
+                .getDateTimeFormField("Date of Birth", "Ex: 25/08/1997"),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(32, 4, 32, 4),
@@ -598,25 +613,22 @@ class _ReservationPageState extends State<ReservationPage> {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(32, 4, 32, 4),
-            child: ReusableMaterial().getEmailFormField(
-                "Email", "What is your email?"),
+            child: ReusableMaterial()
+                .getEmailFormField("Email", "What is your email?"),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(32, 4, 32, 4),
-            child: ReusableMaterial().getNumberFormField(
-                "Weight (Kg)", "How much you weigh?"),
+            child: ReusableMaterial()
+                .getNumberFormField("Weight (Kg)", "How much you weigh?"),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(32, 4, 32, 4),
-            child: ReusableMaterial().getNumberFormField(
-                "Height (Cm)", "How tall are you?"),
+            child: ReusableMaterial()
+                .getNumberFormField("Height (Cm)", "How tall are you?"),
           ),
           Text(
             'Gender',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -625,7 +637,9 @@ class _ReservationPageState extends State<ReservationPage> {
                 value: SingingCharacter.lafayette,
                 groupValue: _character,
                 onChanged: (SingingCharacter value) {
-                  setState(() { _character = value; });
+                  setState(() {
+                    _character = value;
+                  });
                 },
               ),
               Text(
@@ -636,7 +650,9 @@ class _ReservationPageState extends State<ReservationPage> {
                 value: SingingCharacter.jefferson,
                 groupValue: _character,
                 onChanged: (SingingCharacter value) {
-                  setState(() { _character = value; });
+                  setState(() {
+                    _character = value;
+                  });
                 },
               ),
               Text(
@@ -662,13 +678,13 @@ class _ReservationPageState extends State<ReservationPage> {
             onTap: _selectDateTimeField,
           ),
           RaisedButton(
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data')));
-                }
-              },
-              child: Text('Submit'),
+            onPressed: () {
+              if (_formKey.currentState.validate()) {
+                Scaffold.of(context)
+                    .showSnackBar(SnackBar(content: Text('Processing Data')));
+              }
+            },
+            child: Text('Submit'),
           ),
         ],
       ),
@@ -743,8 +759,8 @@ class MyCustomFormState extends State<MyCustomForm> {
                   // otherwise.
                   if (_formKey.currentState.validate()) {
                     // If the form is valid, display a Snackbar.
-                    Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Processing Data')));
+                    Scaffold.of(context).showSnackBar(
+                        SnackBar(content: Text('Processing Data')));
                   }
                 },
                 child: Text('Submit'),
@@ -782,11 +798,66 @@ class Search extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return Container();
+    var services = [];
+    choices.forEach((choice) => services.addAll(choice.listChild));
+    final results =
+        services.where((service) => service.toLowerCase().contains(query));
+    return ListView(
+        children: results
+            .map<ListTile>((result) => ListTile(
+                  title: Text(result,
+                      style: Theme.of(context)
+                          .textTheme
+                          .subhead
+                          .copyWith(fontSize: 16.0)),
+                  leading: Icon(Icons.local_hospital),
+                  onTap: () {
+                    final categoriesChoice = choices
+                        .where((choice) => choice.listChild.contains(result))
+                        .toList()[0];
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ServiceDetailsRoute(
+                            categoriesChoice: categoriesChoice,
+                            indexNumber:
+                                categoriesChoice.listChild.indexOf(result),
+                          ),
+                        ));
+                  },
+                ))
+            .toList());
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return Container();
+    var services = [];
+    choices.forEach((choice) => services.addAll(choice.listChild));
+    final results =
+        services.where((service) => service.toLowerCase().contains(query));
+    return ListView(
+        children: results
+            .map<ListTile>((result) => ListTile(
+                  title: Text(result,
+                      style: Theme.of(context)
+                          .textTheme
+                          .subhead
+                          .copyWith(fontSize: 16.0)),
+                  onTap: () {
+                    final categoriesChoice = choices
+                        .where((choice) => choice.listChild.contains(result))
+                        .toList()[0];
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ServiceDetailsRoute(
+                            categoriesChoice: categoriesChoice,
+                            indexNumber:
+                                categoriesChoice.listChild.indexOf(result),
+                          ),
+                        ));
+                  },
+                ))
+            .toList());
   }
 }
