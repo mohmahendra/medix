@@ -1,6 +1,7 @@
 import 'package:compfest_aic_2019/CategoriesGrid.dart';
 import 'package:compfest_aic_2019/ReusableMaterial.dart';
 import 'package:compfest_aic_2019/Service.dart';
+import 'package:compfest_aic_2019/StringContent.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
@@ -20,12 +21,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue
       ),
       home: MyHomePage(),
-//    home: Scaffold(
-//      appBar: AppBar(
-//        title: Text("Tes Form"),
-//      ),
-//      body: MyCustomForm(),
-//    ),
     );
   }
 }
@@ -111,21 +106,21 @@ class _DashboardPageState extends State<DashboardPage> {
       body: Stack(
         children: <Widget>[
           Center(
-            child: Opacity(
-              opacity: 0.7,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.centerRight,
-                    colors: [
-                      ReusableMaterial().primaryColorLeft,
-                      ReusableMaterial().primaryColorRight
-                    ]
-                  )
+              child: Opacity(
+                opacity: 0.7,
+                child: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.centerRight,
+                          colors: [
+                            ReusableMaterial().primaryColorLeft,
+                            ReusableMaterial().primaryColorRight
+                          ]
+                      )
+                  ),
                 ),
-              ),
-            )
+              )
           ),
           Positioned(
             top: 0,
@@ -157,8 +152,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 height: 180,
                 width: 370,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(15.0)
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(15.0)
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5.0),
@@ -174,57 +169,73 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
-                      child: Text("News For You", style: ReusableMaterial().getWhiteTextStyle(20)),
-                    ),
-                    Container(
-                      width: 160,
-                    ),
-                    Text("Explore Article", style: ReusableMaterial().getWhiteTextStyle(14))
-                  ],
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
+                    child: Text("News For You", style: ReusableMaterial().getWhiteTextStyle(20)),
+                  ),
+                  Container(
+                    width: 160,
+                  ),
+                  Text("Explore Article", style: ReusableMaterial().getWhiteTextStyle(14))
+                ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Container(
-                    height: 180,
-                    width: 180,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
-                      borderRadius: BorderRadius.circular(15.0)
+                  GestureDetector(
+                    child: Container(
+                      height: 180,
+                      width: 180,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(15.0)
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          FlutterLogo(size: 100,),
+                          Text(
+                            "Kenapa Kita Harus Meminum Ibuprofen",
+                            textAlign: TextAlign.center,
+                            style: ReusableMaterial().getWhiteTextStyle(14),
+                          )
+                        ],
+                      ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        FlutterLogo(size: 100,),
-                        Text(
-                          "Kenapa Kita Harus Meminum Ibuprofen",
-                          textAlign: TextAlign.center,
-                          style: ReusableMaterial().getWhiteTextStyle(14),
-                        )
-                      ],
-                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => NewsRouteIbuprofen())
+                      );
+                    },
                   ),
-                  Container(
-                    height: 180,
-                    width: 180,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(15.0)
+                  GestureDetector(
+                    child: Container(
+                      height: 180,
+                      width: 180,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(15.0)
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          FlutterLogo(size: 100,),
+                          Text(
+                            "Efek Samping Minuman Berkarbonasi",
+                            textAlign: TextAlign.center,
+                            style: ReusableMaterial().getWhiteTextStyle(14),
+                          )
+                        ],
+                      ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        FlutterLogo(size: 100,),
-                        Text(
-                          "Efek Samping Minuman Berkarbonasi",
-                          textAlign: TextAlign.center,
-                          style: ReusableMaterial().getWhiteTextStyle(14),
-                        )
-                      ],
-                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => NewsRouteCarbonate())
+                      );
+                    },
                   ),
                 ],
               ),
@@ -234,18 +245,18 @@ class _DashboardPageState extends State<DashboardPage> {
                   height: 40,
                   minWidth: 380,
                   child: RaisedButton(
-                    child: Text(
-                      "Book New Appoinment",
-                      style: ReusableMaterial().getWhiteTextStyle(20)
-                    ),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                    color: Colors.transparent,
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ListCategoriesPage())
-                      );
-                    }),
+                      child: Text(
+                          "Book New Appoinment",
+                          style: ReusableMaterial().getWhiteTextStyle(20)
+                      ),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      color: Colors.transparent,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ListCategoriesPage())
+                        );
+                      }),
                 ),
               ),
             ],
@@ -257,17 +268,17 @@ class _DashboardPageState extends State<DashboardPage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             GestureDetector(
-              child: ListTile(
-                leading: FlutterLogo(size: 40),
-                title: Text("Dashboard", style: TextStyle(fontSize: 20),),
-                subtitle: Text("Your Overview", style: TextStyle(fontSize: 12),),
-              ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => DashboardPage())
-                );
-              }
+                child: ListTile(
+                  leading: FlutterLogo(size: 40),
+                  title: Text("Dashboard", style: TextStyle(fontSize: 20),),
+                  subtitle: Text("Your Overview", style: TextStyle(fontSize: 12),),
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DashboardPage())
+                  );
+                }
             ),
             GestureDetector(
               child: ListTile(
@@ -277,8 +288,221 @@ class _DashboardPageState extends State<DashboardPage> {
               ),
               onTap: () {
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ListCategoriesPage())
+                    context,
+                    MaterialPageRoute(builder: (context) => ListCategoriesPage())
+                );
+              },
+            ),
+            ListTile(
+              leading: FlutterLogo(size: 40),
+              title: Text("My Appoinment", style: TextStyle(fontSize: 20),),
+              subtitle: Text("History and Upcoming Appoinment", style: TextStyle(fontSize: 12),),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DashboardPageHCState extends State<DashboardPage> {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // Todo beresin appbar di page ini
+//      appBar: ThreeLineCustomAppBar(
+//          height: 150,
+//          upperText: "YOUR DASHBOARD",
+//          lowerText: "Have a healthy life!"
+//      ),
+      body: Stack(
+        children: <Widget>[
+          Center(
+              child: Opacity(
+                opacity: 0.7,
+                child: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.centerRight,
+                          colors: [
+                            ReusableMaterial().primaryColorLeft,
+                            ReusableMaterial().primaryColorRight
+                          ]
+                      )
+                  ),
+                ),
+              )
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: ThreeLineCustomAppBar(
+              height: 150,
+              upperText: "YOUR DASHBOARD",
+              lowerText: "Have a healthy life!",
+              transparent: true,
+            ),
+          ),
+          Column(
+            children: <Widget>[
+              Container(
+                height: 170,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
+                    child: Text("Your Appoinment", style: ReusableMaterial().getWhiteTextStyle(20)),
+                  ),
+                ],
+              ),
+              Container(
+                alignment: Alignment.center,
+                height: 180,
+                width: 370,
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(15.0)
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(5.0),
+                  clipBehavior: Clip.hardEdge,
+                  child: Center(
+                    child: Text(
+                      "You Don't Have Any Appoinment",
+                      style: ReusableMaterial().getWhiteTextStyle(24),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 8, 8, 8),
+                    child: Text("News For You", style: ReusableMaterial().getWhiteTextStyle(20)),
+                  ),
+                  Container(
+                    width: 160,
+                  ),
+                  Text("Explore Article", style: ReusableMaterial().getWhiteTextStyle(14))
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  GestureDetector(
+                    child: Container(
+                      height: 180,
+                      width: 180,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(15.0)
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          FlutterLogo(size: 100,),
+                          Text(
+                            "Kenapa Kita Harus Meminum Ibuprofen",
+                            textAlign: TextAlign.center,
+                            style: ReusableMaterial().getWhiteTextStyle(14),
+                          )
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => NewsRouteIbuprofen())
+                      );
+                    },
+                  ),
+                  GestureDetector(
+                    child: Container(
+                      height: 180,
+                      width: 180,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(15.0)
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          FlutterLogo(size: 100,),
+                          Text(
+                            "Efek Samping Minuman Berkarbonasi",
+                            textAlign: TextAlign.center,
+                            style: ReusableMaterial().getWhiteTextStyle(14),
+                          )
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => NewsRouteCarbonate())
+                      );
+                    },
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ButtonTheme(
+                  height: 40,
+                  minWidth: 380,
+                  child: RaisedButton(
+                      child: Text(
+                          "Book New Appoinment",
+                          style: ReusableMaterial().getWhiteTextStyle(20)
+                      ),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      color: Colors.transparent,
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ListCategoriesPage())
+                        );
+                      }),
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            GestureDetector(
+                child: ListTile(
+                  leading: FlutterLogo(size: 40),
+                  title: Text("Dashboard", style: TextStyle(fontSize: 20),),
+                  subtitle: Text("Your Overview", style: TextStyle(fontSize: 12),),
+                ),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => DashboardPage())
+                  );
+                }
+            ),
+            GestureDetector(
+              child: ListTile(
+                leading: FlutterLogo(size: 40),
+                title: Text("Browse Surgery", style: TextStyle(fontSize: 20),),
+                subtitle: Text("Find Your Next Surgery", style: TextStyle(fontSize: 12),),
+              ),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ListCategoriesPage())
                 );
               },
             ),
@@ -664,8 +888,10 @@ class _ReservationPageState extends State<ReservationPage> {
           RaisedButton(
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data')));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DashboardPage()),
+                  );
                 }
               },
               child: Text('Submit'),
@@ -700,59 +926,100 @@ class _ReservationPageState extends State<ReservationPage> {
   }
 }
 
-// Create a Form widget.
-class MyCustomForm extends StatefulWidget {
-  @override
-  MyCustomFormState createState() {
-    return MyCustomFormState();
-  }
-}
-
-// Create a corresponding State class.
-// This class holds data related to the form.
-class MyCustomFormState extends State<MyCustomForm> {
-  // Create a global key that uniquely identifies the Form widget
-  // and allows validation of the form.
-  //
-  // Note: This is a GlobalKey<FormState>,
-  // not a GlobalKey<MyCustomFormState>.
-  final _formKey = GlobalKey<FormState>();
+class NewsRouteIbuprofen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return Scaffold(
+      appBar: ReusableMaterial().getAppBar("Article"),
+      body: ListView(
         children: <Widget>[
-          TextFormField(
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Enter some text';
-              }
-              return null;
-            },
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 25, 8, 8),
+            child: Text(
+                "Kenapa Kita Harus Meminum Ibuprofen",
+                style: TextStyle(fontSize: 22),
+                textAlign: TextAlign.center),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Container(
-              child: RaisedButton(
-                onPressed: () {
-                  // Validate returns true if the form is valid, or false
-                  // otherwise.
-                  if (_formKey.currentState.validate()) {
-                    // If the form is valid, display a Snackbar.
-                    Scaffold.of(context)
-                        .showSnackBar(SnackBar(content: Text('Processing Data')));
-                  }
-                },
-                child: Text('Submit'),
+            padding: const EdgeInsets.fromLTRB(23, 8, 8, 16),
+            child: Opacity(
+              child: Text(
+                "09 July 2019",
+                style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
+              opacity: 0.7,
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 8, 12, 20),
+            child: Opacity(
+              child: Container(
+                alignment: Alignment.center,
+                height: 140,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.grey
+                ),
+              ),
+              opacity: 0.7,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(StringContent().newsText),
+          )
         ],
       ),
+    );
+  }
+}
+
+class NewsRouteCarbonate extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: ReusableMaterial().getAppBar("Article"),
+      body: ListView(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 25, 8, 8),
+              child: Text(
+                "Efek Samping Minuman Berkarbonasi",
+                style: TextStyle(fontSize: 22),
+                textAlign: TextAlign.center),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(23, 8, 8, 16),
+              child: Opacity(
+                child: Text(
+                  "09 July 2019",
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                ),
+                opacity: 0.7,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 8, 12, 20),
+              child: Opacity(
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 140,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.grey
+                  ),
+                ),
+                opacity: 0.7,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(StringContent().newsText),
+            )
+          ],
+        ),
     );
   }
 }
