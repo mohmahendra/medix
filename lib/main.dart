@@ -514,24 +514,65 @@ class ReservationPage extends StatefulWidget{
 
 enum SingingCharacter { lafayette, jefferson }
 
+class BasicDateTimeField extends StatelessWidget {
+  final format = DateFormat("yyyy-MM-dd HH:mm");
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: <Widget>[
+//      Text('Basic date & time field (${format.pattern})'),
+      DateTimeField(
+        format: format,
+        onShowPicker: (context, currentValue) async {
+          final date = await showDatePicker(
+              context: context,
+              firstDate: DateTime(1900),
+              initialDate: currentValue ?? DateTime.now(),
+              lastDate: DateTime(2100));
+          if (date != null) {
+            final time = await showTimePicker(
+              context: context,
+              initialTime:
+              TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+            );
+            return DateTimeField.combine(date, time);
+          } else {
+            return currentValue;
+          }
+        },
+      ),
+    ]);
+  }
+}
+
 class _ReservationPageState extends State<ReservationPage> {
 
   String _dateValue = "";
   String _timeValue = "";
+  final format = DateFormat("yyyy-MM-dd HH:mm");
   SingingCharacter _character = SingingCharacter.lafayette;
   final _formKey = GlobalKey<FormState>();
 
-
-  Future _selectDate() async {
-    DateTime picked = await showDatePicker(
+  Future _selectDateTimeField() async {
+    DateTime date = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
         firstDate: DateTime(2019),
         lastDate: DateTime(2022)
     );
-    if(picked != null) setState(() {
-      _dateValue = picked.toString();
-    });
+    if (date != null) {
+      TimeOfDay time = await showTimePicker(
+          context: context,
+          initialTime: TimeOfDay.now()
+      );
+      setState(() {
+        String formattedDateTime =DateFormat("yyyy-MM-dd HH:mm")
+            .format(DateTimeField.combine(date, time));
+        _dateValue = formattedDateTime;
+      });
+    }
+//    if(picked != null) setState(() {
+//      _dateValue = picked.toString();
+//    });
   }
 
   Future _selectTime() async {
@@ -613,24 +654,21 @@ class _ReservationPageState extends State<ReservationPage> {
               )
             ],
           ),
-//          BasicDateField(),
-//          SizedBox(height: 24),
-//          BasicTimeField(),
-//          SizedBox(height: 24),
-//          BasicDateTimeField(),
-//          SizedBox(height: 24,),
-          Container(
-            height: 40,
-            width: 350,
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
-              borderRadius: BorderRadius.circular(5.0),
-            ),
-            child: Center(
-              child: Text(
-                'Reservation Date',
+          GestureDetector(
+            child: Container(
+              height: 40,
+              width: 350,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              child: Center(
+                child: Text(
+                  _dateValue,
+                ),
               ),
             ),
+            onTap: _selectDateTimeField,
           ),
           RaisedButton(
               onPressed: () {
@@ -707,51 +745,23 @@ class MyCustomFormState extends State<MyCustomForm> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: RaisedButton(
-              onPressed: () {
-                // Validate returns true if the form is valid, or false
-                // otherwise.
-                if (_formKey.currentState.validate()) {
-                  // If the form is valid, display a Snackbar.
-                  Scaffold.of(context)
-                      .showSnackBar(SnackBar(content: Text('Processing Data')));
-                }
-              },
-              child: Text('Submit'),
+            child: Container(
+              child: RaisedButton(
+                onPressed: () {
+                  // Validate returns true if the form is valid, or false
+                  // otherwise.
+                  if (_formKey.currentState.validate()) {
+                    // If the form is valid, display a Snackbar.
+                    Scaffold.of(context)
+                        .showSnackBar(SnackBar(content: Text('Processing Data')));
+                  }
+                },
+                child: Text('Submit'),
+              ),
             ),
           ),
         ],
       ),
     );
-  }
-}
-
-class BasicDateTimeField extends StatelessWidget {
-  final format = DateFormat("yyyy-MM-dd HH:mm");
-  @override
-  Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      Text('Basic date & time field (${format.pattern})'),
-      DateTimeField(
-        format: format,
-        onShowPicker: (context, currentValue) async {
-          final date = await showDatePicker(
-              context: context,
-              firstDate: DateTime(1900),
-              initialDate: currentValue ?? DateTime.now(),
-              lastDate: DateTime(2100));
-          if (date != null) {
-            final time = await showTimePicker(
-              context: context,
-              initialTime:
-              TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
-            );
-            return DateTimeField.combine(date, time);
-          } else {
-            return currentValue;
-          }
-        },
-      ),
-    ]);
   }
 }
